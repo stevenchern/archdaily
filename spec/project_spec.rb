@@ -1,20 +1,37 @@
 require "project"
 
+describe 'Project class' do
+  it 'should be of class project' do
+    expect(Project.new).to be_a Project
+  end
+end
+
+describe 'Bookmark class' do
+  new_bookmark = Project::Bookmark.new(id: 2)
+  it 'should be of class project' do
+    expect(new_bookmark).to be_a Project::Bookmark
+  end
+
+  it 'should have return id when asked' do
+    expect(new_bookmark.id).to eq(2) 
+  end
+end
+
 describe "Bookmarked projects" do
   it 'should return an array' do
     expect(most_bookmarked_projects('cl', 6)).to be_a Array
   end
 
   it 'should return sorted in descending order most bookmareded project titles in Chile, in June' do
-    expect(most_bookmarked_projects('cl', 6)).to eq(["Campus Quiksilver Na Pali / Patrick Arotcharen", "ZOOCO / ZOOCO Estudio", "Bulleit Frontier Works bar / FAR rohn&rojas"])
+    expect(most_bookmarked_projects('cl', 6)).to match_array ["Campus Quiksilver Na Pali / Patrick Arotcharen", "ZOOCO / ZOOCO Estudio", "Bulleit Frontier Works bar / FAR rohn&rojas"]
   end
 
   it 'should return sorted in descending order most bookmareded project titles of the rest of the world, in May' do
-    expect(most_bookmarked_projects('us', 5)).to eq(["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"])
+    expect(most_bookmarked_projects('us', 5)).to match_array ["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"]
   end
 
   it 'should return sorted in descending order most bookmareded project titles of the rest of the world, in April' do
-    expect(most_bookmarked_projects('us', 4)).to eq(["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"])
+    expect(most_bookmarked_projects('us', 4)).to match_array(["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"])
   end
 
   it 'should return empty array of most bookmareded titles in Colombia, in April' do
@@ -44,8 +61,6 @@ describe 'Count books in month' do
   it 'should receive 1 parameters' do
     expect(Project.new().method(:count_bookmarks_in_month).arity).to eq(1)
   end
-
-  let(:new_project) { create(:project, bookmarks: [{id: 1}, {id: 2}]) }
 
   it 'should receive return an integer' do
     expect(Project.new.count_bookmarks_in_month(6)).to be_a Integer
