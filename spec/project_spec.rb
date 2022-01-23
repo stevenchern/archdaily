@@ -23,15 +23,15 @@ describe "Bookmarked projects" do
   end
 
   it 'should return sorted in descending order most bookmareded project titles in Chile, in June' do
-    expect(most_bookmarked_projects('cl', 6)).to match_array ["Campus Quiksilver Na Pali / Patrick Arotcharen", "ZOOCO / ZOOCO Estudio", "Bulleit Frontier Works bar / FAR rohn&rojas"]
+    expect(most_bookmarked_projects('cl', 6)).to eq ["Campus Quiksilver Na Pali / Patrick Arotcharen", "ZOOCO / ZOOCO Estudio", "Bulleit Frontier Works bar / FAR rohn&rojas"]
   end
 
   it 'should return sorted in descending order most bookmareded project titles of the rest of the world, in May' do
-    expect(most_bookmarked_projects('us', 5)).to match_array ["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"]
+    expect(most_bookmarked_projects('us', 5)).to eq ["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"]
   end
 
   it 'should return sorted in descending order most bookmareded project titles of the rest of the world, in April' do
-    expect(most_bookmarked_projects('us', 4)).to match_array(["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"])
+    expect(most_bookmarked_projects('us', 4)).to eq(["Gabriela Mistral Cultural Center / Cristián Fernández Arquitectos + Lateral Arquitectura & Diseño"])
   end
 
   it 'should return empty array of most bookmareded titles in Colombia, in April' do
